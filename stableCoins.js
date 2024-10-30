@@ -2,16 +2,15 @@
 const config = {
   apy: 0.3, // 30% annual percentage yield
   initialDeposit: 1000000, // in USD
-  slippage: 0.005, // 0.5% slippage
-  swapFee: 0.003, // 0.3% swap fee
+  slippage: 0.005, // for example: 0.005 -> 0.5% slippage
+  swapFee: 0.003, // for example: 0.003 -> 0.3% swap fee
   gasPrice: 0.5, // fixed gas cost per compound in USD
-  maxHours: 24, // maximum compounding interval to test in hours (up to 30 days)
+  maxHours: 24, // maximum compounding interval to test in hours (up to 24 hours)
 };
 
 // Function to calculate optimal compounding frequency
 function calculateOptimalCompounding(config) {
   const { apy, initialDeposit, slippage, swapFee, gasPrice, maxHours } = config;
-  const hourlyYieldRate = apy / 8760; // Convert APY to hourly yield
   let optimalFrequency = 0;
   let maxCompoundedAPY = 0;
 

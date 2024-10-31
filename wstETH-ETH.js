@@ -4,12 +4,18 @@ const config = {
   slippage: 0.001007, // for example: 0.5 -> 50% slippage
   swapFee: 0.001, // for example: 0.3 ->  30% swap fee
   gasPrice: 0.5, // fixed gas cost per compound in USD
-  compundFrequency: 48,
+  compundFrequency: 48, // for example: 48 -> 2 days
   borrowApy: 0.027, // for example: 2.7 -> 0.027 % borrow APY
   timePeriod: 8760, // 365 days in hours
   levarage: 0.6666667, // for example: 0.6666667 -> 3x levarage, 2 / 3
 };
+const CONSOLE_FIRST_HOURS = 100;
 
+console.log("Hour = hour of compounding");
+console.log(
+  "Yield = value in dollars after borrowing apy per for specific hour"
+);
+console.log("Depost = new deposit after compounding");
 // Function to calculate optimal compounding frequency
 function calculateOptimalCompounding(config) {
   const {
@@ -40,7 +46,7 @@ function calculateOptimalCompounding(config) {
 
     deposit += yield - fees;
 
-    if (hour < 10) {
+    if (hour < CONSOLE_FIRST_HOURS) {
       console.table({
         hour,
         yield,
